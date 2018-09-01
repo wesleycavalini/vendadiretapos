@@ -1,0 +1,39 @@
+﻿@model VendaDireta.Models.Produto
+
+
+<h3>Detalhes do produto</h3>
+
+@using (Html.BeginForm("Detalhe", "Home", FormMethod.Post))
+{
+    <div class="form-group">
+        <label>Nome</label>
+        <div class="input-group">
+            @Html.TextBoxFor(x => x.Nome, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Preço</label>
+        <div class="input-group">
+            @Html.TextBoxFor(x => x.Preco, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Vendedor</label>
+        <div class="input-group">
+            @Html.TextBoxFor(x => x.Usuario.Nome, new { @class = "form-control", @disabled = "disabled" })
+        </div>
+    </div>
+    @Html.HiddenFor(x=> Model.ProdutoId)
+
+    @Html.ValidationMessage("erro", new { @class = "text-danger" })
+    @Html.ValidationMessage("produto", new { @class = "text-danger" })
+
+    <div class="form-group">
+        <button class="btn btn-success submit-btn">Confirmar compra</button>
+    </div>
+    <div class="form-group">
+        <a href="@Url.Action("Index","Home")" class="btn btn-link">Voltar para listagem</a>
+    </div>
+}
+

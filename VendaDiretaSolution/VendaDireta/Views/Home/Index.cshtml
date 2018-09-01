@@ -1,0 +1,33 @@
+﻿@model IEnumerable<VendaDireta.Models.Produto>
+
+<h4>Lista produtos</h4>
+
+<div class="form-group">
+    <a href="@Url.Action("Cadastrar","Home")" class="btn btn-info">Adicionar</a>
+</div>
+
+<div class="table-responsive">
+    <table class="table">
+        <thead>
+            <tr>
+                <th style="width:40px"></th>
+                <th>Nome</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <a class="btn btn-link" href="@Url.Action("Detalhe", "Home", new { id = item.ProdutoId })">Comprar</a>
+                    </td>
+                    <td>@item.Nome</td>
+                    <td>@item.Preco</td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>

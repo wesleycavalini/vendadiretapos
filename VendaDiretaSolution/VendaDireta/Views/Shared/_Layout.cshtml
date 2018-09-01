@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venda Direta </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div style="color:white;" class="container pull-right">
+            <p class="usuariologado"></p>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Wesley</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+    <script>
+        $(document).ready(function () {
+            var user = document.cookie.replace('usuario=', '');
+            user = user.replace('null;', '');
+            var usuario = JSON.parse(user);
+            if (usuario)
+                $(".usuariologado").text(usuario.Nome + " - Receita: " + usuario.Receita);
+
+        });
+    </script>
+</body>
+</html>
